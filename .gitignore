@@ -1,0 +1,5 @@
+/*.suo
+*.user
+/ScreenCover/bin/netcoreapp3.1/*.pdb
+obj/
+.vs/
