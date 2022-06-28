@@ -37,10 +37,13 @@ namespace ScreenCover
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
 			this.Name = "MainForm";
+			this.Opacity = 0.5D;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-			this.Text = "MainForm";
+			this.Text = "Screen Cover";
 			this.TopMost = true;
 			this.Load += new System.EventHandler(this.MainForm_Load);
+			this.Move += new System.EventHandler(this.MainForm_Move);
+			this.Resize += new System.EventHandler(this.MainForm_Resize);
 			this.ResumeLayout(false);
 
 		}

@@ -30,11 +30,13 @@ namespace ScreenCover
 			int h = GetConfigInt("height", int.MinValue);
 			int bottom = GetConfigInt("bottom", int.MinValue);
 			int right = GetConfigInt("right", int.MinValue);
+			double o = GetConfigDouble("opacity", -1);
 
 			if (this.args != null && this.args.Length > 0) {
 				for (int i = 0; i < args.Length; i++) {
 					String s = args[i];
 					int tmp = 0;
+					double tmpd = 0.0;
 					if (s.StartsWith("left=")) {
 						if (int.TryParse(s.Substring("left=".Length), out tmp)) {
 							x = tmp;
@@ -63,6 +65,11 @@ namespace ScreenCover
 					else if (s.StartsWith("right=")) {
 						if (int.TryParse(s.Substring("right=".Length), out tmp)) {
 							right = tmp;
+						}
+					}
+					else if (s.StartsWith("opacity=")) {
+						if (double.TryParse(s.Substring("opacity=".Length), out tmpd)) {
+							o = tmpd;
 						}
 					}
 				}
@@ -110,6 +117,9 @@ namespace ScreenCover
 			if (h > int.MinValue) {
 				this.Height = h;
 			}
+			if (o >= 0) {
+				this.Opacity = o;
+			}
 		}
 
 		private static int GetConfigInt(string key, int defaultValue = 0) {
@@ -119,6 +129,27 @@ namespace ScreenCover
 				return i;
 			}
 			return defaultValue;
+		}
+
+		private static double GetConfigDouble(string key, double defaultValue = 0) {
+			var config = System.Configuration.ConfigurationManager.AppSettings[key];
+			double tmp;
+			if (!string.IsNullOrEmpty(config) && double.TryParse(config, out tmp)) {
+				return tmp;
+			}
+			return defaultValue;
+		}
+
+		private void MainForm_Resize(object sender, EventArgs e) {
+			showSize();
+		}
+
+		private void MainForm_Move(object sender, EventArgs e) {
+			showSize();
+		}
+
+		private void showSize() {
+			this.Text = String.Format("Screen Cover (Size: {0} x {1}, [{2}, {3}])", this.Width, this.Height, this.Left, this.Top);
 		}
 	}
 }
