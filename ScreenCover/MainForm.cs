@@ -23,6 +23,7 @@ namespace ScreenCover
 
 		private void MainForm_Load(object sender, EventArgs e) {
 			applyArguments(args);
+			this.BackColor = Color.White;
 		}
 
 		private void applyArguments(string[] args) {

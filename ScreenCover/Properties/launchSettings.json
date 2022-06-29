@@ -1,8 +1,7 @@
 {
   "profiles": {
     "ScreenCover": {
-      "commandName": "Project",
-      "commandLineArgs": "left=-10 right=-10 bottom=100 height=200"
+      "commandName": "Project"
     }
   }
 }
