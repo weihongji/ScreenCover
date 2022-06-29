@@ -14,6 +14,8 @@ namespace ScreenCover
 	{
 		private string[] args;
 
+		private Point dragStart;
+
 		public MainForm(string[] args) {
 			InitializeComponent();
 			this.args = args;
@@ -149,7 +151,32 @@ namespace ScreenCover
 		}
 
 		private void showSize() {
-			this.Text = String.Format("Screen Cover (Size: {0} x {1}, [{2}, {3}])", this.Width, this.Height, this.Left, this.Top);
+			this.Text = String.Format("Screen Cover {0} x {1}, [{2}, {3}]", this.Width, this.Height, this.Left, this.Top);
+		}
+
+		private void MainForm_MouseDown(object sender, MouseEventArgs e) {
+			this.dragStart = e.Location;
+		}
+
+		private void MainForm_MouseMove(object sender, MouseEventArgs e) {
+			if (this.dragStart == Point.Empty) {
+				return;
+			}
+			// https://ezinearticles.com/?Drag-Windows-Form-in-C&id=1013708
+			this.Left += e.X - dragStart.X;
+			this.Top += e.Y - dragStart.Y;
+		}
+
+		private void MainForm_MouseUp(object sender, MouseEventArgs e) {
+			this.dragStart = Point.Empty;
+		}
+
+		private void menuItemExit_Click(object sender, EventArgs e) {
+			Application.Exit();
+		}
+
+		private void menuItemMin_Click(object sender, EventArgs e) {
+			this.WindowState = FormWindowState.Minimized;
 		}
 	}
 }
