@@ -6,6 +6,7 @@
     <UseWindowsForms>true</UseWindowsForms>
     <Authors>Jesse Wei</Authors>
     <StartupObject>ScreenCover.Program</StartupObject>
+    <AssemblyName>ScreenCover</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

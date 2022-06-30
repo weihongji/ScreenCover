@@ -13,7 +13,6 @@ namespace ScreenCover
 	public partial class MainForm : Form
 	{
 		private string[] args;
-
 		private Point dragStart;
 
 		public MainForm(string[] args) {
@@ -152,7 +151,74 @@ namespace ScreenCover
 		}
 
 		private void showSize() {
-			this.Text = String.Format("Screen Cover {0} x {1}, [{2}, {3}]", this.Width, this.Height, this.Left, this.Top);
+			lblContent.Text = String.Format("({0}, {1}), {2} x {3}", this.Left, this.Top, this.Width, this.Height);
+			bool isMax = this.WindowState == FormWindowState.Maximized;
+			menuItemMax.Visible = !isMax;
+			menuItemNormal.Visible = isMax;
+		}
+
+		private void MainForm_KeyDown(object sender, KeyEventArgs e) {
+			if (e.KeyCode == Keys.Escape) { // ESC
+				this.WindowState = FormWindowState.Minimized;
+			}
+			else if (e.Alt && e.KeyCode == Keys.X) { // ALT + X
+				e.Handled = e.SuppressKeyPress = true;
+				Application.Exit();
+			}
+			else if (e.Control && e.KeyCode == Keys.Enter) { // Ctrl + Enter
+				if (this.WindowState == FormWindowState.Normal) {
+					this.WindowState = FormWindowState.Maximized;
+				}
+				else if (this.WindowState == FormWindowState.Maximized) {
+					this.WindowState = FormWindowState.Normal;
+				}
+			}
+			else if (e.Shift) {
+				if (e.KeyCode == Keys.Left) { // SHIFT + Left Arrow
+					this.Width++;
+					this.Left--;
+				}
+				else if (e.KeyCode == Keys.Right) { // SHIFT + Right Arrow
+					this.Width++;
+				}
+				else if (e.KeyCode == Keys.Up) { // SHIFT + Up Arrow
+					this.Height++;
+					this.Top--;
+				}
+				else if (e.KeyCode == Keys.Down) { // SHIFT + Down Arrow
+					this.Height++;
+				}
+			}
+			else if (e.Alt) {
+				if (e.KeyCode == Keys.Left) { // ALT + Left Arrow
+					this.Width--;
+				}
+				else if (e.KeyCode == Keys.Right) { // ALT + Right Arrow
+					this.Width--;
+					this.Left++;
+				}
+				else if (e.KeyCode == Keys.Up) { // ALT + Up Arrow
+					this.Height--;
+				}
+				else if (e.KeyCode == Keys.Down) { // ALT + Down Arrow
+					this.Height--;
+					this.Top++;
+				}
+			}
+			else {
+				if (e.KeyCode == Keys.Left) { // Left Arrow
+					this.Left--;
+				}
+				else if (e.KeyCode == Keys.Right) { // Right Arrow
+					this.Left++;
+				}
+				else if (e.KeyCode == Keys.Up) { // Up Arrow
+					this.Top--;
+				}
+				else if (e.KeyCode == Keys.Down) { // Down Arrow
+					this.Top++;
+				}
+			}
 		}
 
 		private void MainForm_MouseDown(object sender, MouseEventArgs e) {
@@ -172,12 +238,36 @@ namespace ScreenCover
 			this.dragStart = Point.Empty;
 		}
 
+		private void menuItemMin_Click(object sender, EventArgs e) {
+			this.WindowState = FormWindowState.Minimized;
+		}
+
+		private void menuItemMax_Click(object sender, EventArgs e) {
+			this.WindowState = FormWindowState.Maximized;
+		}
+
+		private void menuItemNormal_Click(object sender, EventArgs e) {
+			this.WindowState = FormWindowState.Normal;
+		}
+
+		private void menuItemAbout_Click(object sender, EventArgs e) {
+			var about = new AboutBox();
+			this.TopMost = false;
+			about.ShowDialog();
+			this.TopMost = true;
+		}
+
 		private void menuItemExit_Click(object sender, EventArgs e) {
 			Application.Exit();
 		}
 
-		private void menuItemMin_Click(object sender, EventArgs e) {
-			this.WindowState = FormWindowState.Minimized;
+		private void MainForm_DoubleClick(object sender, EventArgs e) {
+			if (this.WindowState == FormWindowState.Maximized) {
+				this.WindowState = FormWindowState.Normal;
+			}
+			else {
+				this.WindowState = FormWindowState.Maximized;
+			}
 		}
 	}
 }
