@@ -129,7 +129,7 @@ namespace ScreenCover
 			this.textBox1.Size = new System.Drawing.Size(358, 108);
 			this.textBox1.TabIndex = 25;
 			this.textBox1.Text = "\r\nShortcuts:\r\n1. Move the cover: Arrow keys\r\n2. Increase size: Shift + arrow keys" +
-    "\r\n3. Decrease size: Alt + arrow keys";
+    "\r\n3. Decrease size: Alt + arrow keys\r\n4. Adjust opacity: Ctrl + arrow keys";
 			// 
 			// AboutBox
 			// 

@@ -37,6 +37,7 @@ namespace ScreenCover
 			this.menuItemAbout = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuItemExit = new System.Windows.Forms.ToolStripMenuItem();
 			this.lblContent = new System.Windows.Forms.Label();
+			this.lblOpacity = new System.Windows.Forms.Label();
 			this.contextMenu.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -97,6 +98,17 @@ namespace ScreenCover
 			this.lblContent.TabIndex = 1;
 			this.lblContent.Text = "(left, top) width x height";
 			// 
+			// lblOpacity
+			// 
+			this.lblOpacity.AutoSize = true;
+			this.lblOpacity.Font = new System.Drawing.Font("Consolas", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			this.lblOpacity.Location = new System.Drawing.Point(169, 106);
+			this.lblOpacity.Name = "lblOpacity";
+			this.lblOpacity.Size = new System.Drawing.Size(87, 23);
+			this.lblOpacity.TabIndex = 2;
+			this.lblOpacity.Text = "Opacity";
+			this.lblOpacity.Visible = false;
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -105,6 +117,7 @@ namespace ScreenCover
 			this.ClientSize = new System.Drawing.Size(800, 450);
 			this.ContextMenuStrip = this.contextMenu;
 			this.ControlBox = false;
+			this.Controls.Add(this.lblOpacity);
 			this.Controls.Add(this.lblContent);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
@@ -115,6 +128,7 @@ namespace ScreenCover
 			this.Load += new System.EventHandler(this.MainForm_Load);
 			this.DoubleClick += new System.EventHandler(this.MainForm_DoubleClick);
 			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
+			this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyUp);
 			this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
 			this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseMove);
 			this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseUp);
@@ -135,6 +149,7 @@ namespace ScreenCover
 		private System.Windows.Forms.ToolStripMenuItem menuItemNormal;
 		private System.Windows.Forms.ToolStripMenuItem menuItemAbout;
 		private System.Windows.Forms.Label lblContent;
+		private System.Windows.Forms.Label lblOpacity;
 	}
 }
 

@@ -152,9 +152,22 @@ namespace ScreenCover
 
 		private void showSize() {
 			lblContent.Text = String.Format("({0}, {1}), {2} x {3}", this.Left, this.Top, this.Width, this.Height);
+
 			bool isMax = this.WindowState == FormWindowState.Maximized;
 			menuItemMax.Visible = !isMax;
 			menuItemNormal.Visible = isMax;
+
+			if (canShowOpacity()) {
+				lblOpacity.Left = this.Width / 2;
+				lblOpacity.Top = (this.Height - lblOpacity.Height) / 2;
+			}
+			else {
+				hideOpacity();
+			}
+		}
+
+		private bool canShowOpacity() {
+			return this.Height > 50 && this.Width > 400;
 		}
 
 		private void MainForm_KeyDown(object sender, KeyEventArgs e) {
@@ -205,6 +218,16 @@ namespace ScreenCover
 					this.Top++;
 				}
 			}
+			else if (e.Control) {
+				if (e.KeyCode == Keys.Left || e.KeyCode == Keys.Down) { // ALT + Left/Down
+					this.Opacity -= 0.01;
+					showOpacity();
+				}
+				else if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Up) { // ALT + Right/Up
+					this.Opacity += 0.01;
+					showOpacity();
+				}
+			}
 			else {
 				if (e.KeyCode == Keys.Left) { // Left Arrow
 					this.Left--;
@@ -218,6 +241,25 @@ namespace ScreenCover
 				else if (e.KeyCode == Keys.Down) { // Down Arrow
 					this.Top++;
 				}
+			}
+		}
+
+		private void MainForm_KeyUp(object sender, KeyEventArgs e) {
+			if (!e.Control) {
+				hideOpacity();
+			}
+		}
+
+		private void showOpacity() {
+			if (!lblOpacity.Visible && canShowOpacity()) {
+				lblOpacity.Visible = true;
+			}
+			lblOpacity.Text = this.Opacity.ToString("0.00");
+		}
+
+		private void hideOpacity() {
+			if (lblOpacity.Visible) {
+				lblOpacity.Visible = false;
 			}
 		}
 
