@@ -36,8 +36,9 @@ namespace ScreenCover
 			this.menuItemNormal = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuItemAbout = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuItemExit = new System.Windows.Forms.ToolStripMenuItem();
-			this.lblContent = new System.Windows.Forms.Label();
+			this.lblSize = new System.Windows.Forms.Label();
 			this.lblOpacity = new System.Windows.Forms.Label();
+			this.menuItemShowSize = new System.Windows.Forms.ToolStripMenuItem();
 			this.contextMenu.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -47,10 +48,11 @@ namespace ScreenCover
             this.menuItemMin,
             this.menuItemMax,
             this.menuItemNormal,
+            this.menuItemShowSize,
             this.menuItemAbout,
             this.menuItemExit});
 			this.contextMenu.Name = "contextMenu";
-			this.contextMenu.Size = new System.Drawing.Size(203, 114);
+			this.contextMenu.Size = new System.Drawing.Size(203, 136);
 			// 
 			// menuItemMin
 			// 
@@ -88,15 +90,15 @@ namespace ScreenCover
 			this.menuItemExit.Text = "E&xit (Alt+X)";
 			this.menuItemExit.Click += new System.EventHandler(this.menuItemExit_Click);
 			// 
-			// lblContent
+			// lblSize
 			// 
-			this.lblContent.AutoSize = true;
-			this.lblContent.Dock = System.Windows.Forms.DockStyle.Top;
-			this.lblContent.Location = new System.Drawing.Point(0, 0);
-			this.lblContent.Name = "lblContent";
-			this.lblContent.Size = new System.Drawing.Size(146, 17);
-			this.lblContent.TabIndex = 1;
-			this.lblContent.Text = "(left, top) width x height";
+			this.lblSize.AutoSize = true;
+			this.lblSize.Dock = System.Windows.Forms.DockStyle.Top;
+			this.lblSize.Location = new System.Drawing.Point(0, 0);
+			this.lblSize.Name = "lblSize";
+			this.lblSize.Size = new System.Drawing.Size(146, 17);
+			this.lblSize.TabIndex = 1;
+			this.lblSize.Text = "(left, top) width x height";
 			// 
 			// lblOpacity
 			// 
@@ -109,6 +111,13 @@ namespace ScreenCover
 			this.lblOpacity.Text = "Opacity";
 			this.lblOpacity.Visible = false;
 			// 
+			// menuItemShowSize
+			// 
+			this.menuItemShowSize.Name = "menuItemShowSize";
+			this.menuItemShowSize.Size = new System.Drawing.Size(202, 22);
+			this.menuItemShowSize.Text = "Show &Size";
+			this.menuItemShowSize.Click += new System.EventHandler(this.menuItemShowSize_Click);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -118,7 +127,7 @@ namespace ScreenCover
 			this.ContextMenuStrip = this.contextMenu;
 			this.ControlBox = false;
 			this.Controls.Add(this.lblOpacity);
-			this.Controls.Add(this.lblContent);
+			this.Controls.Add(this.lblSize);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "MainForm";
@@ -148,8 +157,9 @@ namespace ScreenCover
 		private System.Windows.Forms.ToolStripMenuItem menuItemMax;
 		private System.Windows.Forms.ToolStripMenuItem menuItemNormal;
 		private System.Windows.Forms.ToolStripMenuItem menuItemAbout;
-		private System.Windows.Forms.Label lblContent;
+		private System.Windows.Forms.Label lblSize;
 		private System.Windows.Forms.Label lblOpacity;
+		private System.Windows.Forms.ToolStripMenuItem menuItemShowSize;
 	}
 }
 

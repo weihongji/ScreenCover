@@ -12,10 +12,8 @@ namespace ScreenCover
 		public AboutBox() {
 			InitializeComponent();
 			this.Text = String.Format("About {0}", "Screen Cover");
-			this.labelProductName.Text = "Screen Cover";
-			this.labelVersion.Text = String.Format("Version {0}", AssemblyVersion);
-			this.labelCopyright.Text = "Jesse Wei";
-			this.labelCompany.Text = "weihongji@qq.com";
+			this.labelProductName.Text = "Screen Cover, " + AssemblyVersion;
+			this.labelCopyright.Text = "Jesse Wei, weihongji@qq.com";
 		}
 
 		#region Assembly Attribute Accessors

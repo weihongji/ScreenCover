@@ -14,6 +14,7 @@ namespace ScreenCover
 	{
 		private string[] args;
 		private Point dragStart;
+		private int changeStep;
 
 		public MainForm(string[] args) {
 			InitializeComponent();
@@ -23,6 +24,11 @@ namespace ScreenCover
 		private void MainForm_Load(object sender, EventArgs e) {
 			applyArguments(args);
 			this.BackColor = Color.White;
+
+			changeStep = GetConfigInt("change-step");
+			if (changeStep <= 0) {
+				changeStep = 1;
+			}
 		}
 
 		private void applyArguments(string[] args) {
@@ -33,6 +39,7 @@ namespace ScreenCover
 			int bottom = GetConfigInt("bottom", int.MinValue);
 			int right = GetConfigInt("right", int.MinValue);
 			double o = GetConfigDouble("opacity", -1);
+			bool showSize = GetConfigBool("show-size");
 
 			if (this.args != null && this.args.Length > 0) {
 				for (int i = 0; i < args.Length; i++) {
@@ -122,6 +129,7 @@ namespace ScreenCover
 			if (o >= 0) {
 				this.Opacity = o;
 			}
+			toggleShowSize(showSize);
 		}
 
 		private static int GetConfigInt(string key, int defaultValue = 0) {
@@ -142,6 +150,15 @@ namespace ScreenCover
 			return defaultValue;
 		}
 
+		private static bool GetConfigBool(string key, bool defaultValue = false) {
+			var config = System.Configuration.ConfigurationManager.AppSettings[key];
+			bool b;
+			if (!string.IsNullOrEmpty(config) && bool.TryParse(config, out b)) {
+				return b;
+			}
+			return defaultValue;
+		}
+
 		private void MainForm_Resize(object sender, EventArgs e) {
 			showSize();
 		}
@@ -151,7 +168,7 @@ namespace ScreenCover
 		}
 
 		private void showSize() {
-			lblContent.Text = String.Format("({0}, {1}), {2} x {3}", this.Left, this.Top, this.Width, this.Height);
+			lblSize.Text = String.Format("({0}, {1}), {2} x {3}", this.Left, this.Top, this.Width, this.Height);
 
 			bool isMax = this.WindowState == FormWindowState.Maximized;
 			menuItemMax.Visible = !isMax;
@@ -188,34 +205,34 @@ namespace ScreenCover
 			}
 			else if (e.Shift) {
 				if (e.KeyCode == Keys.Left) { // SHIFT + Left Arrow
-					this.Width++;
-					this.Left--;
+					this.Width += changeStep;
+					this.Left -= changeStep;
 				}
 				else if (e.KeyCode == Keys.Right) { // SHIFT + Right Arrow
-					this.Width++;
+					this.Width += changeStep;
 				}
 				else if (e.KeyCode == Keys.Up) { // SHIFT + Up Arrow
-					this.Height++;
-					this.Top--;
+					this.Height += changeStep;
+					this.Top -= changeStep;
 				}
 				else if (e.KeyCode == Keys.Down) { // SHIFT + Down Arrow
-					this.Height++;
+					this.Height += changeStep;
 				}
 			}
 			else if (e.Alt) {
 				if (e.KeyCode == Keys.Left) { // ALT + Left Arrow
-					this.Width--;
+					this.Width -= changeStep;
 				}
 				else if (e.KeyCode == Keys.Right) { // ALT + Right Arrow
-					this.Width--;
-					this.Left++;
+					this.Width -= changeStep;
+					this.Left += changeStep;
 				}
 				else if (e.KeyCode == Keys.Up) { // ALT + Up Arrow
-					this.Height--;
+					this.Height -= changeStep;
 				}
 				else if (e.KeyCode == Keys.Down) { // ALT + Down Arrow
-					this.Height--;
-					this.Top++;
+					this.Height -= changeStep;
+					this.Top += changeStep;
 				}
 			}
 			else if (e.Control) {
@@ -230,16 +247,16 @@ namespace ScreenCover
 			}
 			else {
 				if (e.KeyCode == Keys.Left) { // Left Arrow
-					this.Left--;
+					this.Left -= changeStep;
 				}
 				else if (e.KeyCode == Keys.Right) { // Right Arrow
-					this.Left++;
+					this.Left += changeStep;
 				}
 				else if (e.KeyCode == Keys.Up) { // Up Arrow
-					this.Top--;
+					this.Top -= changeStep;
 				}
 				else if (e.KeyCode == Keys.Down) { // Down Arrow
-					this.Top++;
+					this.Top += changeStep;
 				}
 			}
 		}
@@ -290,6 +307,21 @@ namespace ScreenCover
 
 		private void menuItemNormal_Click(object sender, EventArgs e) {
 			this.WindowState = FormWindowState.Normal;
+		}
+
+		private void menuItemShowSize_Click(object sender, EventArgs e) {
+			toggleShowSize(!lblSize.Visible);
+		}
+
+		private void toggleShowSize(bool toShow) {
+			if (toShow) {
+				lblSize.Visible = true;
+				menuItemShowSize.Text = "Hide &Size";
+			}
+			else {
+				lblSize.Visible = false;
+				menuItemShowSize.Text = "Show &Size";
+			}
 		}
 
 		private void menuItemAbout_Click(object sender, EventArgs e) {
