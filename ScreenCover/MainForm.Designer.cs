@@ -30,15 +30,16 @@ namespace ScreenCover
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.menuItemMin = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuItemMax = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuItemNormal = new System.Windows.Forms.ToolStripMenuItem();
+			this.menuItemShowSize = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuItemAbout = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuItemExit = new System.Windows.Forms.ToolStripMenuItem();
 			this.lblSize = new System.Windows.Forms.Label();
 			this.lblOpacity = new System.Windows.Forms.Label();
-			this.menuItemShowSize = new System.Windows.Forms.ToolStripMenuItem();
 			this.contextMenu.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -76,6 +77,13 @@ namespace ScreenCover
 			this.menuItemNormal.Visible = false;
 			this.menuItemNormal.Click += new System.EventHandler(this.menuItemNormal_Click);
 			// 
+			// menuItemShowSize
+			// 
+			this.menuItemShowSize.Name = "menuItemShowSize";
+			this.menuItemShowSize.Size = new System.Drawing.Size(202, 22);
+			this.menuItemShowSize.Text = "Show &Size";
+			this.menuItemShowSize.Click += new System.EventHandler(this.menuItemShowSize_Click);
+			// 
 			// menuItemAbout
 			// 
 			this.menuItemAbout.Name = "menuItemAbout";
@@ -111,13 +119,6 @@ namespace ScreenCover
 			this.lblOpacity.Text = "Opacity";
 			this.lblOpacity.Visible = false;
 			// 
-			// menuItemShowSize
-			// 
-			this.menuItemShowSize.Name = "menuItemShowSize";
-			this.menuItemShowSize.Size = new System.Drawing.Size(202, 22);
-			this.menuItemShowSize.Text = "Show &Size";
-			this.menuItemShowSize.Click += new System.EventHandler(this.menuItemShowSize_Click);
-			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -128,6 +129,7 @@ namespace ScreenCover
 			this.ControlBox = false;
 			this.Controls.Add(this.lblOpacity);
 			this.Controls.Add(this.lblSize);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "MainForm";

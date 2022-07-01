@@ -12,7 +12,7 @@ namespace ScreenCover
 		public AboutBox() {
 			InitializeComponent();
 			this.Text = String.Format("About {0}", "Screen Cover");
-			this.labelProductName.Text = "Screen Cover, " + AssemblyVersion;
+			this.labelProductName.Text = "Screen Cover, " + AssemblyVersion.Substring(0, 3);
 			this.labelCopyright.Text = "Jesse Wei, weihongji@qq.com";
 		}
 

@@ -7,6 +7,7 @@
     <Authors>Jesse Wei</Authors>
     <StartupObject>ScreenCover.Program</StartupObject>
     <AssemblyName>ScreenCover</AssemblyName>
+    <ApplicationIcon>ScreenCover.ico</ApplicationIcon>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

@@ -175,7 +175,7 @@ namespace ScreenCover
 			menuItemNormal.Visible = isMax;
 
 			if (canShowOpacity()) {
-				lblOpacity.Left = this.Width / 2;
+				lblOpacity.Left = (this.Width - lblOpacity.Width) / 2;
 				lblOpacity.Top = (this.Height - lblOpacity.Height) / 2;
 			}
 			else {
@@ -184,7 +184,7 @@ namespace ScreenCover
 		}
 
 		private bool canShowOpacity() {
-			return this.Height > 50 && this.Width > 400;
+			return this.Height > 50 && this.Width > 100;
 		}
 
 		private void MainForm_KeyDown(object sender, KeyEventArgs e) {

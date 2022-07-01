@@ -25,6 +25,7 @@ namespace ScreenCover
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutBox));
 			this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
 			this.labelProductName = new System.Windows.Forms.Label();
 			this.labelCopyright = new System.Windows.Forms.Label();
@@ -53,6 +54,7 @@ namespace ScreenCover
 			this.tableLayoutPanel.Controls.Add(this.tableLayoutPanel1, 0, 4);
 			this.tableLayoutPanel.Controls.Add(this.lblShortcuts, 0, 3);
 			this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tableLayoutPanel.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
 			this.tableLayoutPanel.Location = new System.Drawing.Point(10, 12);
 			this.tableLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
 			this.tableLayoutPanel.Name = "tableLayoutPanel";
@@ -69,7 +71,7 @@ namespace ScreenCover
 			// labelProductName
 			// 
 			this.labelProductName.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.labelProductName.Font = new System.Drawing.Font("Microsoft YaHei UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			this.labelProductName.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
 			this.labelProductName.Location = new System.Drawing.Point(7, 0);
 			this.labelProductName.Margin = new System.Windows.Forms.Padding(7, 0, 4, 0);
 			this.labelProductName.MaximumSize = new System.Drawing.Size(0, 22);
@@ -82,7 +84,7 @@ namespace ScreenCover
 			// labelCopyright
 			// 
 			this.labelCopyright.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.labelCopyright.Font = new System.Drawing.Font("Microsoft YaHei UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			this.labelCopyright.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
 			this.labelCopyright.Location = new System.Drawing.Point(7, 33);
 			this.labelCopyright.Margin = new System.Windows.Forms.Padding(7, 0, 4, 0);
 			this.labelCopyright.MaximumSize = new System.Drawing.Size(0, 22);
@@ -212,11 +214,11 @@ namespace ScreenCover
 			// lblShortcuts
 			// 
 			this.lblShortcuts.AutoSize = true;
-			this.lblShortcuts.Font = new System.Drawing.Font("Microsoft YaHei UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			this.lblShortcuts.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
 			this.lblShortcuts.Location = new System.Drawing.Point(7, 89);
 			this.lblShortcuts.Margin = new System.Windows.Forms.Padding(7, 0, 4, 0);
 			this.lblShortcuts.Name = "lblShortcuts";
-			this.lblShortcuts.Size = new System.Drawing.Size(79, 20);
+			this.lblShortcuts.Size = new System.Drawing.Size(72, 20);
 			this.lblShortcuts.TabIndex = 25;
 			this.lblShortcuts.Text = "Shortcuts";
 			// 
@@ -228,12 +230,12 @@ namespace ScreenCover
 			this.ClientSize = new System.Drawing.Size(584, 361);
 			this.Controls.Add(this.tableLayoutPanel);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Margin = new System.Windows.Forms.Padding(4);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "AboutBox";
 			this.Padding = new System.Windows.Forms.Padding(10, 12, 10, 12);
-			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "AboutBox";
