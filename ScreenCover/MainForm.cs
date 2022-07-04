@@ -281,7 +281,9 @@ namespace ScreenCover
 		}
 
 		private void MainForm_MouseDown(object sender, MouseEventArgs e) {
-			this.dragStart = e.Location;
+			if (this.WindowState == FormWindowState.Normal) {
+				this.dragStart = e.Location;
+			}
 		}
 
 		private void MainForm_MouseMove(object sender, MouseEventArgs e) {
